@@ -1,0 +1,172 @@
+<ul style="display: flex; list-style: none; margin: 2em">
+  <li
+    class="cursor"
+    [mat-menu-trigger-for]="action"
+    #menuTrigger="matMenuTrigger"
+    (mouseover)="openMyMenu(menuTrigger)"
+    (mouseleave)="closeMyMenu(menuTrigger)"
+  >
+    Home<mat-icon style="position: absolute">keyboard_arrow_down</mat-icon>
+  </li>
+  <li class="cursor" [mat-menu-trigger-for]="dashboard">
+    Dashboard<mat-icon style="position: absolute">keyboard_arrow_down</mat-icon>
+  </li>
+
+  <li style="position: absolute; bottom: 28px; right: 40px; cursor: pointer">
+    Login
+  </li>
+  <li style="position: absolute; bottom: 28px; right: 100px; cursor: pointer">
+    Signup
+  </li>
+</ul>
+<mat-menu #action="matMenu" [hasBackdrop]="false">
+  <button
+    mat-menu-item
+    style="background-color: white !important; color: black !important"
+  >
+    one
+  </button>
+  <button
+    mat-menu-item
+    style="background-color: white !important; color: black !important"
+  >
+    two
+  </button>
+</mat-menu>
+<mat-menu #dashboard="matMenu">
+  <button
+    mat-menu-item
+    style="background-color: white !important; color: black !important"
+  >
+    one
+  </button>
+  <button
+    mat-menu-item
+    style="background-color: white !important; color: black !important"
+  >
+    two
+  </button>
+</mat-menu>
+
+<div class="flex-center bg">
+  <mat-form-field style="margin: 0.5em; margin-top: 1.5em; border-radius: 2em">
+    <mat-label>Job Title</mat-label>
+    <input type="text" matInput [(ngModel)]="searchValue" />
+    @if(searchValue){
+    <button
+      matSuffix
+      mat-icon-button
+      aria-label="clear"
+      (click)="searchValue = ''"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+    }
+  </mat-form-field>
+  <mat-form-field style="margin: 0.5em; margin-top: 1.5em; border-radius: 2em">
+    <mat-label>Location</mat-label>
+    <input type="text" matInput [(ngModel)]="searchValue" />
+    @if(searchValue){
+    <button
+      matSuffix
+      mat-icon-button
+      aria-label="clear"
+      (click)="searchValue = ''"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+    }
+  </mat-form-field>
+  <mat-form-field style="margin: 0.5em; margin-top: 1.5em; border-radius: 2em">
+    <mat-label>Job Category</mat-label>
+    <input type="text" matInput [(ngModel)]="searchValue" />
+    @if(searchValue){
+    <button
+      matSuffix
+      mat-icon-button
+      aria-label="clear"
+      (click)="searchValue = ''"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+    }
+  </mat-form-field>
+
+  <!-- <button class="searchButton">Search</button> -->
+  <button class="btn-53" style="height: 3em; margin-top: 2.2em">
+    <div class="original">Search</div>
+    <div class="letters">
+      <span>S</span>
+      <span>E</span>
+      <span>A</span>
+      <span>R</span>
+      <span>C</span>
+      <span>H</span>
+    </div>
+  </button>
+</div>
+
+<div style="display: flex; justify-content: space-evenly">
+  <mat-card style="height: 4em; width: 15em">
+    <mat-card-content
+      style="display: flex; justify-content: center; color: white"
+    >
+      Create Profile
+    </mat-card-content>
+  </mat-card>
+  <mat-card style="height: 4em; width: 15em">
+    <mat-card-content
+      style="display: flex; justify-content: center; color: white"
+    >
+      Upload CV
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<mat-grid-list cols="3" rowHeight="3:2 ">
+  <mat-grid-tile *ngFor="let id of ids">
+    <mat-card>
+      <!-- <mat-card-content>Simple card</mat-card-content> -->
+      <div class="col">
+        <div class="row">
+          <div
+            class="col-3"
+            style="
+              height: 15em;
+              display: grid;
+              align-items: center;
+              justify-content: center;
+            "
+          >
+            <mat-icon *ngIf="id.job">download</mat-icon>
+          </div>
+          <div
+            class="col-9"
+            style="height: 15em; display: grid; align-items: center"
+          >
+            <h1 style="margin-top: 1em">{{ id.job }}</h1>
+            <h4 style="margin-top: -2em">{{ id.salary }}</h4>
+            <h4 style="margin-top: -2em">{{ id.location }}</h4>
+            <button mat-button style="width: 12em" *ngIf="id.job">Apply</button>
+            <mat-icon *ngIf="id.loadMore">refresh</mat-icon>
+          </div>
+
+          <!-- <div class="col-3" style="height: 15em;display: grid;align-items: center;">
+                  <button mat-button >Apply</button>
+                </div> -->
+        </div>
+      </div>
+    </mat-card>
+  </mat-grid-tile>
+  <!-- <mat-grid-tile>2</mat-grid-tile>
+    <mat-grid-tile>3</mat-grid-tile>
+    <mat-grid-tile>4</mat-grid-tile> -->
+</mat-grid-list>
+<div style="display: flex; justify-content: center; margin-bottom: 1em">
+  <button
+    (click)="getloadmoreproduct()"
+    class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04"
+  >
+    Load More
+  </button>
+</div>
